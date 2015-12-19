@@ -13,7 +13,7 @@ class RequestTests extends PHPUnit_Framework_TestCase {
 
         $s["REQUEST_METHOD"] = "GET";
 
-        $req = new Owlie\Request($s, $h);
+        $req = new Lux\Request($s, $h);
 
         $this->assertEquals("get", $req->getMethod());
     }

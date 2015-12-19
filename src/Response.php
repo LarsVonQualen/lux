@@ -6,7 +6,7 @@
  * Time: 18.30
  */
 
-namespace Owlie;
+namespace Lux;
 
 class Response {
     private $_headers = array();

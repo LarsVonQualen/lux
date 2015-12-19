@@ -6,7 +6,7 @@
  * Time: 18.22
  */
 
-namespace Owlie;
+namespace Lux;
 
 class Request {
     private $_method = "";

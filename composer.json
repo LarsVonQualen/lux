@@ -1,4 +1,6 @@
 {
+  "name": "lux/lux",
+  "description": "Lightweight PHP microservice framework.",
   "require": {
     "php": ">=7.0.0",
     "firebase/php-jwt": "^3.0",

@@ -6,6 +6,6 @@
  * Time: 20.28
  */
 
-namespace Owlie\Exceptions;
+namespace Lux\Exceptions;
 
 class NotImplementedException extends \Exception {}

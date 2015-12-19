@@ -6,6 +6,6 @@
  * Time: 20.27
  */
 
-namespace Owlie\Exceptions;
+namespace Lux\Exceptions;
 
 class NotFoundException extends \Exception {}

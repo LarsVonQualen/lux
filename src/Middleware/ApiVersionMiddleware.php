@@ -6,11 +6,11 @@
  * Time: 19.35
  */
 
-namespace Owlie\Middleware;
+namespace Lux\Middleware;
 
-use Owlie\IMiddleware;
-use Owlie\Request;
-use Owlie\Response;
+use Lux\IMiddleware;
+use Lux\Request;
+use Lux\Response;
 
 class ApiVersionMiddleware implements IMiddleware {
     public function Handle(Request &$req, Response &$res)

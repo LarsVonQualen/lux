@@ -1,5 +1,5 @@
 <?php
-use Owlie\Response;
+use Lux\Response;
 
 /**
  * Created by PhpStorm.

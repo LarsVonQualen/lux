@@ -6,6 +6,6 @@
  * Time: 20.26
  */
 
-namespace Owlie\Exceptions;
+namespace Lux\Exceptions;
 
 class UnauthorizedException extends \Exception {}

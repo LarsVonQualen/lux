@@ -6,7 +6,7 @@
  * Time: 18.35
  */
 
-namespace Owlie;
+namespace Lux;
 
 interface IMiddleware {
     public function Handle(Request &$req, Response &$res);

@@ -6,12 +6,12 @@
  * Time: 20.09
  */
 
-namespace Owlie\Middleware;
+namespace Lux\Middleware;
 
-use Owlie\Application;
-use Owlie\IMiddleware;
-use Owlie\Request;
-use Owlie\Response;
+use Lux\Application;
+use Lux\IMiddleware;
+use Lux\Request;
+use Lux\Response;
 use \Firebase\JWT\JWT;
 
 class JwtParser implements IMiddleware {

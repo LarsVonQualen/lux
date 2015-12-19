@@ -6,11 +6,11 @@
  * Time: 19.10
  */
 
-namespace Owlie\Middleware;
+namespace Lux\Middleware;
 
-use Owlie\IMiddleware;
-use Owlie\Request;
-use Owlie\Response;
+use Lux\IMiddleware;
+use Lux\Request;
+use Lux\Response;
 
 class JsonBodyParser implements IMiddleware {
     private $_input = null;

@@ -6,11 +6,11 @@
  * Time: 18.33
  */
 
-namespace Owlie;
+namespace Lux;
 
-use Owlie\Exceptions\NotFoundException;
-use Owlie\Exceptions\NotImplementedException;
-use Owlie\Exceptions\UnauthorizedException;
+use Lux\Exceptions\NotFoundException;
+use Lux\Exceptions\NotImplementedException;
+use Lux\Exceptions\UnauthorizedException;
 
 class Application {
     /**

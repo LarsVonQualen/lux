@@ -6,9 +6,9 @@
  * Time: 18.29
  */
 
-namespace Owlie;
+namespace Lux;
 
-use Owlie\Exceptions\NotFoundException;
+use Lux\Exceptions\NotFoundException;
 
 class Handler {
     private $_handlers = array(

@@ -7,6 +7,6 @@
  */
 declare(strict_types=1);
 
-namespace Owlie;
+namespace Lux;
 
 $autoloader = require(__DIR__ . "/../vendor/autoload.php");

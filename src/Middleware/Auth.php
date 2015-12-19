@@ -6,12 +6,12 @@
  * Time: 20.21
  */
 
-namespace Owlie\Middleware;
+namespace Lux\Middleware;
 
-use Owlie\Exceptions\UnauthorizedException;
-use Owlie\IMiddleware;
-use Owlie\Request;
-use Owlie\Response;
+use Lux\Exceptions\UnauthorizedException;
+use Lux\IMiddleware;
+use Lux\Request;
+use Lux\Response;
 
 class Auth implements IMiddleware {
     public function Handle(Request &$req, Response &$res)
