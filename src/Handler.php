@@ -25,8 +25,9 @@ class Handler {
 
     public function Register(\string $method, \string $urlPattern, callable $handler, $middleware = array()) {
         $m = strtolower($method);
+        $key = empty(rtrim($urlPattern, "/")) ? "/" : rtrim($urlPattern, "/");
 
-        $this->_handlers[$m][rtrim($urlPattern, "/")] = array(
+        $this->_handlers[$m][$key] = array(
             "middleware" => $middleware,
             "handler" => $handler
         );
@@ -40,12 +41,12 @@ class Handler {
         $methodGroup = $this->_handlers[$req->getMethod()];
 
         if (count($methodGroup) == 0) {
-            throw new NotFoundException();
+            throw new NotFoundException("Unable to find any handlers.");
         }
 
         if (empty($urlParams)) {
             if (!isset($methodGroup["/"])) {
-                throw new NotFoundException();
+                throw new NotFoundException("Unable to find a root handler.");
             } else {
                 $handler = $methodGroup["/"];
             }
@@ -67,7 +68,7 @@ class Handler {
         }
 
         if (!is_array($handler)) {
-            throw new NotFoundException();
+            throw new NotFoundException("Unable to find matching handler.");
         }
 
         foreach ($handler["middleware"] as $middleware) {
@@ -78,7 +79,7 @@ class Handler {
         }
 
         if (!is_callable($handler["handler"])) {
-            throw new NotFoundException();
+            throw new NotFoundException("Handler is malformed.");
         }
 
         return $handler["handler"]($req, $res);

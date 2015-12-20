@@ -11,6 +11,8 @@ namespace Lux;
 use Lux\Exceptions\NotFoundException;
 use Lux\Exceptions\NotImplementedException;
 use Lux\Exceptions\UnauthorizedException;
+use Lux\Middleware\JsonBodyParser;
+use Lux\Middleware\QueryStringParser;
 
 class LuxApplication {
     /**
@@ -23,8 +25,11 @@ class LuxApplication {
         array_push(self::$_middleWare, $middleware);
     }
 
-    public static function HandleRequest(Handler $handler) {
+    public static function AttachHandler(Handler $handler) {
         try {
+            self::AddMiddleware(new JsonBodyParser());
+            self::AddMiddleware(new QueryStringParser());
+
             $req = new Request();
             $res = new Response();
 
@@ -45,7 +50,7 @@ class LuxApplication {
 
             http_response_code($res->getStatus());
 
-            return $content;
+            echo $content;
         } catch (NotImplementedException $e) {
             self::handleError(500, $e);
         } catch (NotFoundException $e) {
