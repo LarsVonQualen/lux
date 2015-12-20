@@ -4,7 +4,7 @@ Modern lightweight PHP microservice framework.
 # Goals
 - Stay up-to-date with PHP, thus targeting the latest stable build of PHP, as of writing 7.
 - Stay simple.
-- Stay lightweight, this not getting caught up in feature creep.
+- Stay lightweight, thus not getting caught up in feature creep.
 - Stay fun!
 
 # Future goals

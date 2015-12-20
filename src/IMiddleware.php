@@ -8,6 +8,15 @@
 
 namespace Lux;
 
+/**
+ * Interface IMiddleware
+ * @package Lux
+ */
 interface IMiddleware {
+    /**
+     * @param Request $req
+     * @param Response $res
+     * @return mixed
+     */
     public function Handle(Request &$req, Response &$res);
 }

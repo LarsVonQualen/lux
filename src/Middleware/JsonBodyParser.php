@@ -12,13 +12,27 @@ use Lux\IMiddleware;
 use Lux\Request;
 use Lux\Response;
 
+/**
+ * Class JsonBodyParser
+ * @package Lux\Middleware
+ */
 class JsonBodyParser implements IMiddleware {
+    /**
+     * @var string
+     */
     private $_input = null;
 
+    /**
+     * @param string $input
+     */
     public function Input(\string $input) {
         $this->_input = $input;
     }
 
+    /**
+     * @param Request $req
+     * @param Response $res
+     */
     public function Handle(Request &$req, Response &$res)
     {
         $contentType = $req->getHeader("Content-Type");
@@ -29,9 +43,7 @@ class JsonBodyParser implements IMiddleware {
 
             if ($jsonAsArray == null) return;
 
-            foreach($jsonAsArray as $key => $value) {
-                $req->setParam($key, $value);
-            }
+            $req->setParam("body", $jsonAsArray);
         }
     }
 }

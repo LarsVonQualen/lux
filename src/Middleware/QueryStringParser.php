@@ -12,7 +12,15 @@ use Lux\IMiddleware;
 use Lux\Request;
 use Lux\Response;
 
+/**
+ * Class QueryStringParser
+ * @package Lux\Middleware
+ */
 class QueryStringParser implements IMiddleware {
+    /**
+     * @param Request $req
+     * @param Response $res
+     */
     public function Handle(Request &$req, Response &$res)
     {
         $q = $req->getQueryString();

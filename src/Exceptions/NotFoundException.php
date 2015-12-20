@@ -8,4 +8,8 @@
 
 namespace Lux\Exceptions;
 
+/**
+ * Class NotFoundException
+ * @package Lux\Exceptions
+ */
 class NotFoundException extends \Exception {}

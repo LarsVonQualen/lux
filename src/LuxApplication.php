@@ -14,21 +14,34 @@ use Lux\Exceptions\UnauthorizedException;
 use Lux\Middleware\JsonBodyParser;
 use Lux\Middleware\QueryStringParser;
 
+/**
+ * Class LuxApplication
+ * @package Lux
+ */
 class LuxApplication {
     /**
      * @var array
      */
     private static $_middleWare = array();
+    /**
+     * @var array
+     */
     private static $_config = array();
 
-    public static function AddMiddleware(IMiddleware $middleware) {
+    /**
+     * @param IMiddleware $middleware
+     */
+    public static function UseMiddleware(IMiddleware $middleware) {
         array_push(self::$_middleWare, $middleware);
     }
 
+    /**
+     * @param Handler $handler
+     */
     public static function AttachHandler(Handler $handler) {
         try {
-            self::AddMiddleware(new JsonBodyParser());
-            self::AddMiddleware(new QueryStringParser());
+            self::UseMiddleware(new JsonBodyParser());
+            self::UseMiddleware(new QueryStringParser());
 
             $req = new Request();
             $res = new Response();
@@ -62,14 +75,26 @@ class LuxApplication {
         }
     }
 
+    /**
+     * @param $key
+     * @param $value
+     */
     public static function set($key, $value) {
         self::$_config[$key] = $value;
     }
 
+    /**
+     * @param $key
+     * @return mixed|null
+     */
     public static function get($key) {
         return self::$_config[$key] ?? null;
     }
 
+    /**
+     * @param int $statusCode
+     * @param \Exception $e
+     */
     private static function handleError(int $statusCode, \Exception $e) {
         header("Content-Type: application/json");
         http_response_code($statusCode);

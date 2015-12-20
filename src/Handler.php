@@ -10,7 +10,14 @@ namespace Lux;
 
 use Lux\Exceptions\NotFoundException;
 
+/**
+ * Class Handler
+ * @package Lux
+ */
 class Handler {
+    /**
+     * @var array
+     */
     private $_handlers = array(
         "get"       => array(),
         "post"      => array(),
@@ -19,10 +26,12 @@ class Handler {
         "patch"     => array()
     );
 
-    public function __construct()
-    {
-    }
-
+    /**
+     * @param string $method
+     * @param string $urlPattern
+     * @param callable $handler
+     * @param array $middleware
+     */
     public function Register(\string $method, \string $urlPattern, callable $handler, $middleware = array()) {
         $m = strtolower($method);
         $key = empty(rtrim($urlPattern, "/")) ? "/" : rtrim($urlPattern, "/");
@@ -33,6 +42,12 @@ class Handler {
         );
     }
 
+    /**
+     * @param Request $req
+     * @param Response $res
+     * @return mixed
+     * @throws NotFoundException
+     */
     public function Handle(Request &$req, Response &$res)
     {
         $urlParams = $this->getUrlParameters($req->getUri());
@@ -46,7 +61,7 @@ class Handler {
 
         if (empty($urlParams)) {
             if (!isset($methodGroup["/"])) {
-                throw new NotFoundException("Unable to find a root handler.");
+                throw new NotFoundException("Unable to find a '{$req->getMethod()}' root handler.");
             } else {
                 $handler = $methodGroup["/"];
             }
@@ -59,7 +74,7 @@ class Handler {
                 if (count($keyParams[0]) != $urlParamsCount) continue;
 
                 for ($i = 0; $i < count($urlParams); $i++) {
-                    $req->setParam($keyParams[1][$i], $urlParams[$i]);
+                    $req->setParam($keyParams[1][$i], urldecode($urlParams[$i]));
                 }
 
                 $handler = $value;
@@ -85,6 +100,10 @@ class Handler {
         return $handler["handler"]($req, $res);
     }
 
+    /**
+     * @param string $url
+     * @return array|string
+     */
     private function getUrlParameters(\string $url) {
         $matches = array();
 
