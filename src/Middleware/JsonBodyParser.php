@@ -21,13 +21,13 @@ class JsonBodyParser implements IMiddleware
     /**
      * @var string
      */
-    private $_input = null;
+    private $input = null;
 
     /**
      * @param string $input
      */
     public function Input(\string $input) {
-        $this->_input = $input;
+        $this->input = $input;
     }
 
     /**
@@ -39,7 +39,7 @@ class JsonBodyParser implements IMiddleware
         $contentType = $req->getHeader("Content-Type");
 
         if ($contentType != null && is_string($contentType) && $contentType == "application/json") {
-            $json = $this->_input ?? file_get_contents('php://input');
+            $json = $this->input ?? file_get_contents('php://input');
             $jsonAsArray = json_decode($json, true);
 
             if ($jsonAsArray == null) return;

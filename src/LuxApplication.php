@@ -23,17 +23,17 @@ class LuxApplication
     /**
      * @var array
      */
-    private static $_middleWare = array();
+    private static $middleWare = array();
     /**
      * @var array
      */
-    private static $_config = array();
+    private static $config = array();
 
     /**
      * @param IMiddleware $middleware
      */
     public static function useMiddleware(IMiddleware $middleware) {
-        array_push(self::$_middleWare, $middleware);
+        array_push(self::$middleWare, $middleware);
     }
 
     /**
@@ -47,7 +47,7 @@ class LuxApplication
             $req = new Request();
             $res = new Response();
 
-            foreach (self::$_middleWare as $middleWare) {
+            foreach (self::$middleWare as $middleWare) {
                 /**
                  * @var $middleWare IMiddleware
                  */
@@ -81,7 +81,7 @@ class LuxApplication
      * @param $value
      */
     public static function set($key, $value) {
-        self::$_config[$key] = $value;
+        self::$config[$key] = $value;
     }
 
     /**
@@ -89,7 +89,7 @@ class LuxApplication
      * @return mixed|null
      */
     public static function get($key) {
-        return self::$_config[$key] ?? null;
+        return self::$config[$key] ?? null;
     }
 
     /**

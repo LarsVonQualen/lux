@@ -17,17 +17,17 @@ class Response
     /**
      * @var array
      */
-    private $_headers = array();
+    private $headers = array();
     /**
      * @var int
      */
-    private $_status = 200;
+    private $status = 200;
 
     /**
      * @return array
      */
     public function getHeaders(): array {
-        return $this->_headers;
+        return $this->headers;
     }
 
     /**
@@ -35,14 +35,14 @@ class Response
      * @return string|null
      */
     public function getHeader($key) {
-        return $this->_headers[$key] ?? null;
+        return $this->headers[$key] ?? null;
     }
 
     /**
      * @return int
      */
     public function getStatus(): \int {
-        return $this->_status;
+        return $this->status;
     }
 
     /**
@@ -50,7 +50,7 @@ class Response
      * @param string $value
      */
     public function setHeader(\string $key, \string $value) {
-        $this->_headers[$key] = $value;
+        $this->headers[$key] = $value;
     }
 
     /**
@@ -58,7 +58,7 @@ class Response
      * @return Response
      */
     public function status(int $statusCode): Response {
-        $this->_status = $statusCode;
+        $this->status = $statusCode;
 
         return $this;
     }

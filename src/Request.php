@@ -17,23 +17,23 @@ class Request
     /**
      * @var string
      */
-    private $_method = "";
+    private $method = "";
     /**
      * @var string
      */
-    private $_uri = "";
+    private $uri = "";
     /**
      * @var array
      */
-    private $_params = array();
+    private $params = array();
     /**
      * @var array
      */
-    private $_headers = array();
+    private $headers = array();
     /**
      * @var string
      */
-    private $_queryString = null;
+    private $queryString = null;
 
     /**
      * Request constructor.
@@ -42,15 +42,15 @@ class Request
      */
     public function __construct($serverVar = null, $headers = null)
     {
-        $this->_headers = $headers ?? getallheaders();
+        $this->headers = $headers ?? getallheaders();
 
         $s = $serverVar ?? $_SERVER;
 
-        $this->_method = strtolower($s["REQUEST_METHOD"]);
-        $this->_uri = $s["REQUEST_URI"];
+        $this->method = strtolower($s["REQUEST_METHOD"]);
+        $this->uri = $s["REQUEST_URI"];
 
         if (isset($s["QUERY_STRING"])) {
-            $this->_queryString = $s["QUERY_STRING"];
+            $this->queryString = $s["QUERY_STRING"];
         }
     }
 
@@ -58,21 +58,21 @@ class Request
      * @return string
      */
     public function getMethod(): \string {
-        return $this->_method;
+        return $this->method;
     }
 
     /**
      * @return string
      */
     public function getUri(): \string {
-        return $this->_uri;
+        return $this->uri;
     }
 
     /**
      * @return mixed
      */
     public function getParams(): array {
-        return $this->_params;
+        return $this->params;
     }
 
     /**
@@ -80,7 +80,7 @@ class Request
      * @return mixed|null
      */
     public function getParam($key) {
-        return $this->_params[$key] ?? null;
+        return $this->params[$key] ?? null;
     }
 
     /**
@@ -88,14 +88,14 @@ class Request
      * @param $value
      */
     public function setParam($key, $value) {
-        $this->_params[$key] = $value;
+        $this->params[$key] = $value;
     }
 
     /**
      * @return mixed
      */
     public function getHeaders(): array {
-        return $this->_headers;
+        return $this->headers;
     }
 
     /**
@@ -103,13 +103,13 @@ class Request
      * @return string|null
      */
     public function getHeader(\string $name) {
-        return $this->_headers[$name] ?? null;
+        return $this->headers[$name] ?? null;
     }
 
     /**
      * @return string
      */
     public function getQueryString() {
-        return $this->_queryString;
+        return $this->queryString;
     }
 }

@@ -19,7 +19,7 @@ class Handler
     /**
      * @var array
      */
-    private $_handlers = array(
+    private $handlers = array(
         "get"       => array(),
         "post"      => array(),
         "put"       => array(),
@@ -37,7 +37,7 @@ class Handler
         $m = strtolower($method);
         $key = empty(rtrim($urlPattern, "/")) ? "/" : rtrim($urlPattern, "/");
 
-        $this->_handlers[$m][$key] = array(
+        $this->handlers[$m][$key] = array(
             "middleware" => $middleware,
             "handler" => $handler
         );
@@ -54,7 +54,7 @@ class Handler
         $urlParams = $this->getUrlParameters($req->getUri());
         $urlParamsCount = count($urlParams);
         $handler = null;
-        $methodGroup = $this->_handlers[$req->getMethod()];
+        $methodGroup = $this->handlers[$req->getMethod()];
 
         if (count($methodGroup) == 0) {
             throw new NotFoundException("Unable to find any handlers.");
