@@ -12,7 +12,6 @@
   ],
   "require": {
     "php": ">=7.0.0",
-    "firebase/php-jwt": "^3.0",
     "phpunit/phpunit": "^5.1"
   },
   "autoload": {
