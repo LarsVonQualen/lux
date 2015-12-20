@@ -12,4 +12,7 @@ namespace Lux\Exceptions;
  * Class UnauthorizedException
  * @package Lux\Exceptions
  */
-class UnauthorizedException extends \Exception {}
+class UnauthorizedException extends \Exception
+{
+
+}

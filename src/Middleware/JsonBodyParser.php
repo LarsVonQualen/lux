@@ -16,7 +16,8 @@ use Lux\Response;
  * Class JsonBodyParser
  * @package Lux\Middleware
  */
-class JsonBodyParser implements IMiddleware {
+class JsonBodyParser implements IMiddleware
+{
     /**
      * @var string
      */
@@ -33,7 +34,7 @@ class JsonBodyParser implements IMiddleware {
      * @param Request $req
      * @param Response $res
      */
-    public function Handle(Request &$req, Response &$res)
+    public function handle(Request &$req, Response &$res)
     {
         $contentType = $req->getHeader("Content-Type");
 

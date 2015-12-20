@@ -12,7 +12,8 @@ namespace Lux;
  * Class Request
  * @package Lux
  */
-class Request {
+class Request
+{
     /**
      * @var string
      */

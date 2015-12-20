@@ -12,7 +12,8 @@ namespace Lux;
  * Class Response
  * @package Lux
  */
-class Response {
+class Response
+{
     /**
      * @var array
      */

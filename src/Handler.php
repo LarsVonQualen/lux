@@ -14,7 +14,8 @@ use Lux\Exceptions\NotFoundException;
  * Class Handler
  * @package Lux
  */
-class Handler {
+class Handler
+{
     /**
      * @var array
      */
@@ -32,7 +33,7 @@ class Handler {
      * @param callable $handler
      * @param array $middleware
      */
-    public function Register(\string $method, \string $urlPattern, callable $handler, $middleware = array()) {
+    public function register(\string $method, \string $urlPattern, callable $handler, $middleware = array()) {
         $m = strtolower($method);
         $key = empty(rtrim($urlPattern, "/")) ? "/" : rtrim($urlPattern, "/");
 
@@ -48,7 +49,7 @@ class Handler {
      * @return mixed
      * @throws NotFoundException
      */
-    public function Handle(Request &$req, Response &$res)
+    public function handle(Request &$req, Response &$res)
     {
         $urlParams = $this->getUrlParameters($req->getUri());
         $urlParamsCount = count($urlParams);
@@ -90,7 +91,7 @@ class Handler {
             /**
              * @var $middleware IMiddleware
              */
-            $middleware->Handle($req, $res);
+            $middleware->handle($req, $res);
         }
 
         if (!is_callable($handler["handler"])) {

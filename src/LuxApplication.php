@@ -18,7 +18,8 @@ use Lux\Middleware\QueryStringParser;
  * Class LuxApplication
  * @package Lux
  */
-class LuxApplication {
+class LuxApplication
+{
     /**
      * @var array
      */
@@ -31,17 +32,17 @@ class LuxApplication {
     /**
      * @param IMiddleware $middleware
      */
-    public static function UseMiddleware(IMiddleware $middleware) {
+    public static function useMiddleware(IMiddleware $middleware) {
         array_push(self::$_middleWare, $middleware);
     }
 
     /**
      * @param Handler $handler
      */
-    public static function AttachHandler(Handler $handler) {
+    public static function attachHandler(Handler $handler) {
         try {
-            self::UseMiddleware(new JsonBodyParser());
-            self::UseMiddleware(new QueryStringParser());
+            self::useMiddleware(new JsonBodyParser());
+            self::useMiddleware(new QueryStringParser());
 
             $req = new Request();
             $res = new Response();
@@ -50,10 +51,10 @@ class LuxApplication {
                 /**
                  * @var $middleWare IMiddleware
                  */
-                $middleWare->Handle($req, $res);
+                $middleWare->handle($req, $res);
             }
 
-            $content = $handler->Handle($req, $res);
+            $content = $handler->handle($req, $res);
 
             $headers = $res->getHeaders();
 

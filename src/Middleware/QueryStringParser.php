@@ -16,12 +16,13 @@ use Lux\Response;
  * Class QueryStringParser
  * @package Lux\Middleware
  */
-class QueryStringParser implements IMiddleware {
+class QueryStringParser implements IMiddleware
+{
     /**
      * @param Request $req
      * @param Response $res
      */
-    public function Handle(Request &$req, Response &$res)
+    public function handle(Request &$req, Response &$res)
     {
         $q = $req->getQueryString();
 
