@@ -12,7 +12,7 @@ use Lux\Exceptions\NotFoundException;
 use Lux\Exceptions\NotImplementedException;
 use Lux\Exceptions\UnauthorizedException;
 
-class Application {
+class LuxApplication {
     /**
      * @var array
      */

@@ -1,6 +1,15 @@
 {
   "name": "lux/lux",
-  "description": "Lightweight PHP microservice framework.",
+  "description": "Modern lightweight PHP microservice framework.",
+  "type": "library",
+  "keywords": ["microservice", "web api"],
+  "homepage": "https://github.com/LarsVonQualen/lux",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Lars von Qualen"
+    }
+  ],
   "require": {
     "php": ">=7.0.0",
     "firebase/php-jwt": "^3.0",
