@@ -36,6 +36,25 @@ $handler->Register("get", "/{yourName}", function (Request $req, Response $res) 
     ]);
 });
 
+$handler->Register("get", "/{firstName}/{lastName}", function (Request $req, Response $res) {
+    $res->redirect("/Simple.php/{$req->getParam("firstName")} {$req->getParam("lastName")}");
+});
+
+$handler->Register("put", "/{id}", function (Request $req, Response $res) {
+    return $res->json([
+        "id" => $req->getParam("id"),
+        "req_body" => $req->getParam("body")
+    ]);
+});
+
+$handler->Register("delete", "/{id}", function (Request $req, Response $res) {
+    $res->status(204);
+});
+
+$handler->Register("post", "/", function (Request $req, Response $res) {
+    return $res->json($req->getParam("body"));
+});
+
 LuxApplication::AttachHandler($handler);
 ```
 
