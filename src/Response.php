@@ -26,7 +26,7 @@ class Response
     /**
      * @return array
      */
-    public function getHeaders(): array {
+    public function getHeaders() {
         return $this->headers;
     }
 
@@ -35,13 +35,13 @@ class Response
      * @return string|null
      */
     public function getHeader($key) {
-        return $this->headers[$key] ?? null;
+        return isset($this->headers[$key]) ? $this->headers[$key] : null;
     }
 
     /**
      * @return int
      */
-    public function getStatus(): \int {
+    public function getStatus() {
         return $this->status;
     }
 
@@ -49,7 +49,7 @@ class Response
      * @param string $key
      * @param string $value
      */
-    public function setHeader(\string $key, \string $value) {
+    public function setHeader($key, $value) {
         $this->headers[$key] = $value;
     }
 
@@ -57,7 +57,7 @@ class Response
      * @param int $statusCode
      * @return Response
      */
-    public function status(int $statusCode): Response {
+    public function status($statusCode) {
         $this->status = $statusCode;
 
         return $this;
@@ -67,7 +67,7 @@ class Response
      * @param $object
      * @return string
      */
-    public function json($object): \string {
+    public function json($object) {
         return $this->contentType("application/json")->send(json_encode($object));
     }
 
@@ -75,7 +75,7 @@ class Response
      * @param string $html
      * @return string
      */
-    public function html(\string $html): \string {
+    public function html($html) {
         return $this->contentType("text/html")->send($html);
     }
 
@@ -83,7 +83,7 @@ class Response
      * @param string $type
      * @return Response
      */
-    public function contentType(\string $type): Response {
+    public function contentType($type) {
         $this->setHeader("Content-Type", $type);
 
         return $this;
@@ -101,7 +101,7 @@ class Response
      * @param string $url
      * @return Response
      */
-    public function redirect(\string $url) {
+    public function redirect($url) {
         $this->setHeader("location", $url);
 
         return $this->status(302);
@@ -111,7 +111,7 @@ class Response
      * @param string $url
      * @return Response
      */
-    public function redirectPermanent(\string $url) {
+    public function redirectPermanent($url) {
         $this->setHeader("location", $url);
 
         return $this->status(301);

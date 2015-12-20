@@ -33,7 +33,7 @@ class Handler
      * @param callable $handler
      * @param array $middleware
      */
-    public function register(\string $method, \string $urlPattern, callable $handler, $middleware = array()) {
+    public function register($method, $urlPattern, callable $handler, $middleware = array()) {
         $m = strtolower($method);
         $key = empty(rtrim($urlPattern, "/")) ? "/" : rtrim($urlPattern, "/");
 
@@ -105,7 +105,7 @@ class Handler
      * @param string $url
      * @return array|string
      */
-    private function getUrlParameters(\string $url) {
+    private function getUrlParameters($url) {
         $matches = array();
 
         preg_match("/(.*)\/(.\w+\.\w+)\/(.*)/i", rtrim($url, "/"), $matches);

@@ -89,14 +89,14 @@ class LuxApplication
      * @return mixed|null
      */
     public static function get($key) {
-        return self::$config[$key] ?? null;
+        return isset(self::$config[$key]) ? self::$config[$key] : null;
     }
 
     /**
      * @param int $statusCode
      * @param \Exception $e
      */
-    private static function handleError(int $statusCode, \Exception $e) {
+    private static function handleError($statusCode, \Exception $e) {
         header("Content-Type: application/json");
         http_response_code($statusCode);
         echo json_encode($e->getMessage());

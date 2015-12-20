@@ -42,9 +42,9 @@ class Request
      */
     public function __construct($serverVar = null, $headers = null)
     {
-        $this->headers = $headers ?? getallheaders();
+        $this->headers = $headers == null ? getallheaders() : $headers;
 
-        $s = $serverVar ?? $_SERVER;
+        $s = $serverVar == null ? $_SERVER : $serverVar;
 
         $this->method = strtolower($s["REQUEST_METHOD"]);
         $this->uri = $s["REQUEST_URI"];
@@ -57,21 +57,21 @@ class Request
     /**
      * @return string
      */
-    public function getMethod(): \string {
+    public function getMethod() {
         return $this->method;
     }
 
     /**
      * @return string
      */
-    public function getUri(): \string {
+    public function getUri() {
         return $this->uri;
     }
 
     /**
      * @return mixed
      */
-    public function getParams(): array {
+    public function getParams() {
         return $this->params;
     }
 
@@ -80,7 +80,7 @@ class Request
      * @return mixed|null
      */
     public function getParam($key) {
-        return $this->params[$key] ?? null;
+        return isset($this->params[$key]) ? $this->params[$key] : null;
     }
 
     /**
@@ -94,7 +94,7 @@ class Request
     /**
      * @return mixed
      */
-    public function getHeaders(): array {
+    public function getHeaders() {
         return $this->headers;
     }
 
@@ -102,8 +102,8 @@ class Request
      * @param string $name
      * @return string|null
      */
-    public function getHeader(\string $name) {
-        return $this->headers[$name] ?? null;
+    public function getHeader($name) {
+        return isset($this->headers[$name]) ? $this->headers[$name] : null;
     }
 
     /**
