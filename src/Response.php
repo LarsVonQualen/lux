@@ -97,12 +97,20 @@ class Response
         return $object;
     }
 
+    /**
+     * @param string $url
+     * @return Response
+     */
     public function redirect(\string $url) {
         $this->setHeader("location", $url);
 
         return $this->status(302);
     }
 
+    /**
+     * @param string $url
+     * @return Response
+     */
     public function redirectPermanent(\string $url) {
         $this->setHeader("location", $url);
 
