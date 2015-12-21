@@ -51,7 +51,8 @@ class Handler
      */
     public function handle(Request &$req, Response &$res)
     {
-        $urlParams = $this->getUrlParameters($req->getUri());
+        $url = $this->getCleanUrl($req->getUri());
+        $urlParams = $this->getCleanUrlParameters($url);
         $urlParamsCount = count($urlParams);
         $handler = null;
         $methodGroup = $this->handlers[$req->getMethod()];
@@ -60,12 +61,8 @@ class Handler
             throw new NotFoundException("Unable to find any handlers.");
         }
 
-        if (empty($urlParams)) {
-            if (!isset($methodGroup["/"])) {
-                throw new NotFoundException("Unable to find a '{$req->getMethod()}' root handler.");
-            } else {
-                $handler = $methodGroup["/"];
-            }
+        if (isset($methodGroup[$url])) {
+            $handler = $methodGroup[$url];
         } else {
             foreach ($methodGroup as $key => $value) {
                 $keyParams = array();
@@ -75,7 +72,7 @@ class Handler
                 if (count($keyParams[0]) != $urlParamsCount) continue;
 
                 for ($i = 0; $i < count($urlParams); $i++) {
-                    $req->setParam($keyParams[1][$i], urldecode($urlParams[$i]));
+                    $req->setParam($keyParams[1][$i], urldecode(explode("?", $urlParams[$i])[0]));
                 }
 
                 $handler = $value;
@@ -105,15 +102,20 @@ class Handler
      * @param string $url
      * @return array|string
      */
-    private function getUrlParameters($url) {
+    private function getCleanUrlParameters($url) {
+        return explode("/", ltrim($url, "/"));
+    }
+
+    private function getCleanUrl($url) {
         $matches = array();
 
-        preg_match("/(.*)\/(.\w+\.\w+)\/(.*)/i", rtrim($url, "/"), $matches);
+        preg_match("/(\/\w+\.\w+)(\/.*)/i", rtrim($url, "/"), $matches);
 
-        if (count($matches) == 4) {
-            return explode("/", $matches[3]);
+
+        if (count($matches) == 3) {
+            return $matches[2];
         } else {
-            return "";
+            return "/";
         }
     }
 }
